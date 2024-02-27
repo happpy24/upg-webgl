@@ -16,27 +16,28 @@ public class Gamemanager : MonoBehaviour
     //enum that shows the current active area
     public CurrentActiveEnv currentActiveEnv;
 
-    public EnvironmentBackgroundData currentEnvironmentBackgroundColor;
+    public GameObject[] LayoutImages;
 
-    public GameObject[] LayoutImages; 
 
-    void Start()
+    private void OnEnable()
     {
-        SetCurrentEnvColor();
+        InputManager.onEnvironmentChange += SetCurrentEnvColor;
+    }
+    
+    private void OnDisable()
+    {
+        InputManager.onEnvironmentChange -= SetCurrentEnvColor;
     }
 
-    private void Update()
-    {
-    }
     //sets the colors of the background
-    private void SetCurrentEnvColor()
+    private void SetCurrentEnvColor(EnvironmentBackgroundData backgroundData)
     {
         //make sure the layout images have been set. yes I know this is shit but its simple so why complicate
         if (LayoutImages != null)
         {
-            LayoutImages[0].GetComponent<UnityEngine.UI.Image>().color = currentEnvironmentBackgroundColor.primaryColor;
-            LayoutImages[1].GetComponent<UnityEngine.UI.Image>().color = currentEnvironmentBackgroundColor.secondaryColor;
-            LayoutImages[2].GetComponent<UnityEngine.UI.Image>().color = currentEnvironmentBackgroundColor.secondaryColor;
+            LayoutImages[0].GetComponent<Image>().color = backgroundData.primaryColor;
+            LayoutImages[1].GetComponent<Image>().color = backgroundData.secondaryColor;
+            LayoutImages[2].GetComponent<Image>().color = backgroundData.secondaryColor;
         }
     }
 }
