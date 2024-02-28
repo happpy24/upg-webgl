@@ -44,6 +44,7 @@ public class Gamemanager : MonoBehaviour
             LayoutImages[2].GetComponent<Image>().color = backgroundData.secondaryColor;
 
             LayoutImages[3].GetComponent<Image>().sprite = backgroundData.screenDecorations;
+            LayoutImages[3].GetComponent<Image>().preserveAspect = true;
         }
     }
 }
