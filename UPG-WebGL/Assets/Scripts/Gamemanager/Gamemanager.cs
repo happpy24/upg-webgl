@@ -12,6 +12,7 @@ public enum CurrentActiveEnv
     desert,
     mountain
 }
+
 public class Gamemanager : MonoBehaviour
 {
     //enum that shows the current active area
@@ -43,8 +44,14 @@ public class Gamemanager : MonoBehaviour
             LayoutImages[1].GetComponent<Image>().color = backgroundData.secondaryColor;
             LayoutImages[2].GetComponent<Image>().color = backgroundData.secondaryColor;
 
+            //add the proper screen decoration to the specific environment
             LayoutImages[3].GetComponent<Image>().sprite = backgroundData.screenDecorations;
             LayoutImages[3].GetComponent<Image>().preserveAspect = true;
         }
+    }
+
+    private void GameEvents()
+    {
+
     }
 }
