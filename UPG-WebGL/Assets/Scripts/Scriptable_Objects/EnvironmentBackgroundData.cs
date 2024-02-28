@@ -17,4 +17,7 @@ public class EnvironmentBackgroundData : ScriptableObject
     public Color tertiaryColor;
 
     public Sprite screenDecorations;
+
+    [Header("Area Enum")]
+    public CurrentActiveEnv currentEnv;
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +20,7 @@ public class Gamemanager : MonoBehaviour
     public GameObject[] LayoutImages;
 
 
-    private void OnEnable()
+    private void OnEnable() 
     {
         InputManager.onEnvironmentChange += SetCurrentEnvColor;
     }
@@ -32,12 +33,17 @@ public class Gamemanager : MonoBehaviour
     //sets the colors of the background
     private void SetCurrentEnvColor(EnvironmentBackgroundData backgroundData)
     {
+        //sets the current environment enum to the given one
+        currentActiveEnv = backgroundData.currentEnv;
+
         //make sure the layout images have been set. yes I know this is shit but its simple so why complicate
         if (LayoutImages != null)
         {
             LayoutImages[0].GetComponent<Image>().color = backgroundData.primaryColor;
             LayoutImages[1].GetComponent<Image>().color = backgroundData.secondaryColor;
             LayoutImages[2].GetComponent<Image>().color = backgroundData.secondaryColor;
+
+            LayoutImages[3].GetComponent<Image>().sprite = backgroundData.screenDecorations;
         }
     }
 }
