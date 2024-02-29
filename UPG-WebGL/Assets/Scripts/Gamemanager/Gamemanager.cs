@@ -13,10 +13,20 @@ public enum CurrentActiveEnv
     mountain
 }
 
+public enum PlayerPrompts
+{
+    chooseDirection,
+    playCard,
+    throwDice,
+    PlayerTurn
+}
+
 public class Gamemanager : MonoBehaviour
 {
     //enum that shows the current active area
     public CurrentActiveEnv currentActiveEnv;
+    public PlayerPrompts playerPrompts;
+
 
     public GameObject[] LayoutImages;
 
@@ -50,7 +60,7 @@ public class Gamemanager : MonoBehaviour
         }
     }
 
-    private void GameEvents()
+    private void GameEvents(PlayerPrompts playerPrompts)
     {
 
     }
