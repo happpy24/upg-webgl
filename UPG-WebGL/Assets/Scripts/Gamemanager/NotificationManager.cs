@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class NotificationManager : MonoBehaviour
 {
@@ -23,12 +23,15 @@ public class NotificationManager : MonoBehaviour
 
     private static NotificationManager instance;
     /// <summary>
-    /// set text and make it fade out
+    /// set text and animate it
     /// </summary>
     [SerializeField] private TextMeshProUGUI notificationText;
     [SerializeField] private float fadeTime;
 
     private IEnumerator notificationCoroutine;
+
+    public RectTransform notification; 
+
 
     public void SetNewNotification(string message)
     { 
@@ -36,6 +39,7 @@ public class NotificationManager : MonoBehaviour
         {
             StopCoroutine(notificationCoroutine);
         }
+        notification.DOAnchorPos(new Vector3(0, 1550, 0), 0.5f);
         StartCoroutine(FadeOutNotification(message));
     }
     private IEnumerator FadeOutNotification(string message)
