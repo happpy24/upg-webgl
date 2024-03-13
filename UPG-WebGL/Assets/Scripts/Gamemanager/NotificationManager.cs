@@ -7,7 +7,7 @@ using TMPro;
 public class NotificationManager : MonoBehaviour
 {
     /// <summary>
-    /// find out if NotificationManager exists in scene, otherwise make it.
+    /// check if instance is not empty, then return it.
     /// </summary>
     public static NotificationManager Instance {
         get
@@ -16,31 +16,12 @@ public class NotificationManager : MonoBehaviour
             {
                 return instance;
             }
-            instance = FindAnyObjectByType<NotificationManager>();
-            if (instance != null)
-            {
-                return instance;
-            }
-            CreateNewInstance();
+            instance = FindAnyObjectByType<NotificationManager>();            
             return instance;
         }
     }
-    public static NotificationManager CreateNewInstance()
-    {
-        NotificationManager notificationManagerPrefab = Resources.Load<NotificationManager>("NotificationManager");
-        instance = Instantiate(notificationManagerPrefab);
 
-        return instance;
-    }
     private static NotificationManager instance;
-
-    private void Awake()
-    {
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
     /// <summary>
     /// set text and make it fade out
     /// </summary>
@@ -55,8 +36,7 @@ public class NotificationManager : MonoBehaviour
         {
             StopCoroutine(notificationCoroutine);
         }
-        notificationCoroutine = FadeOutNotification(message);
-        StartCoroutine(notificationCoroutine);
+        StartCoroutine(FadeOutNotification(message));
     }
     private IEnumerator FadeOutNotification(string message)
     {
@@ -69,7 +49,7 @@ public class NotificationManager : MonoBehaviour
                 notificationText.color.g,
                 notificationText.color.b,
                 Mathf.Lerp(1f, 0f, t / fadeTime));
-            yield return null;
+            yield return new WaitForSeconds(Time.deltaTime);
         }
     }
 
