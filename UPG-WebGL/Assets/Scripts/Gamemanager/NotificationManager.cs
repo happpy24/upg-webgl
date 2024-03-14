@@ -6,6 +6,16 @@ using DG.Tweening;
 
 public class NotificationManager : MonoBehaviour
 {
+    private static NotificationManager instance;
+
+    [SerializeField] private TextMeshProUGUI notificationText;
+    [SerializeField] private float fadeTime;
+
+    private IEnumerator notificationCoroutine;
+
+    public RectTransform notification;
+
+
     /// <summary>
     /// check if instance is not empty, then return it.
     /// </summary>
@@ -21,17 +31,9 @@ public class NotificationManager : MonoBehaviour
         }
     }
 
-    private static NotificationManager instance;
     /// <summary>
     /// set text and animate it
     /// </summary>
-    [SerializeField] private TextMeshProUGUI notificationText;
-    [SerializeField] private float fadeTime;
-
-    private IEnumerator notificationCoroutine;
-
-    public RectTransform notification; 
-
 
     public void SetNewNotification(string message)
     { 

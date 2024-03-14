@@ -63,6 +63,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Notification"",
+                    ""type"": ""Button"",
+                    ""id"": ""2ad668bd-6f28-4f3b-8c3f-b80e20da98e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -74,6 +83,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""NextArea(Test)"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52f7d7fb-9777-4f24-9bf0-d22fed843146"",
+                    ""path"": ""<Keyboard>/#(E)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Notification"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -88,6 +108,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         // DesktopControls
         m_DesktopControls = asset.FindActionMap("DesktopControls", throwIfNotFound: true);
         m_DesktopControls_NextAreaTest = m_DesktopControls.FindAction("NextArea(Test)", throwIfNotFound: true);
+        m_DesktopControls_Notification = m_DesktopControls.FindAction("Notification", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -196,11 +217,13 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_DesktopControls;
     private List<IDesktopControlsActions> m_DesktopControlsActionsCallbackInterfaces = new List<IDesktopControlsActions>();
     private readonly InputAction m_DesktopControls_NextAreaTest;
+    private readonly InputAction m_DesktopControls_Notification;
     public struct DesktopControlsActions
     {
         private @InputControls m_Wrapper;
         public DesktopControlsActions(@InputControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @NextAreaTest => m_Wrapper.m_DesktopControls_NextAreaTest;
+        public InputAction @Notification => m_Wrapper.m_DesktopControls_Notification;
         public InputActionMap Get() { return m_Wrapper.m_DesktopControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -213,6 +236,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @NextAreaTest.started += instance.OnNextAreaTest;
             @NextAreaTest.performed += instance.OnNextAreaTest;
             @NextAreaTest.canceled += instance.OnNextAreaTest;
+            @Notification.started += instance.OnNotification;
+            @Notification.performed += instance.OnNotification;
+            @Notification.canceled += instance.OnNotification;
         }
 
         private void UnregisterCallbacks(IDesktopControlsActions instance)
@@ -220,6 +246,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @NextAreaTest.started -= instance.OnNextAreaTest;
             @NextAreaTest.performed -= instance.OnNextAreaTest;
             @NextAreaTest.canceled -= instance.OnNextAreaTest;
+            @Notification.started -= instance.OnNotification;
+            @Notification.performed -= instance.OnNotification;
+            @Notification.canceled -= instance.OnNotification;
         }
 
         public void RemoveCallbacks(IDesktopControlsActions instance)
@@ -244,5 +273,6 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     public interface IDesktopControlsActions
     {
         void OnNextAreaTest(InputAction.CallbackContext context);
+        void OnNotification(InputAction.CallbackContext context);
     }
 }

@@ -41,6 +41,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Notification",
+                    "type": "Button",
+                    "id": "2ad668bd-6f28-4f3b-8c3f-b80e20da98e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -52,6 +61,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "NextArea(Test)",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "52f7d7fb-9777-4f24-9bf0-d22fed843146",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Notification",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
