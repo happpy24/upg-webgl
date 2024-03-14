@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class TestNotif : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /// <summary>
+    /// get name and set it to player name
+    /// </summary>
     void Start()
     {
-        NotificationManager.Instance.SetNewNotification("Error");
         name = "TestName";
         //name = activePlayer.name;
         //activePlayer = player with name (activePlayer.name)
+        if (name == null)
+        {
+            NotificationManager.Instance.SetNewNotification("Error");
+        }
+
     }
+    /// <summary>
+    /// tell player(s) it whose turn it is
+    /// </summary>
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
