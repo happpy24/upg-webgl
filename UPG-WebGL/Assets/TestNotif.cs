@@ -7,7 +7,7 @@ public class TestNotif : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        NotificationManager.Instance.SetNewNotification("Test");
+        NotificationManager.Instance.SetNewNotification("Error");
         name = "TestName";
         //name = activePlayer.name;
         //activePlayer = player with name (activePlayer.name)

@@ -40,21 +40,18 @@ public class NotificationManager : MonoBehaviour
             StopCoroutine(notificationCoroutine);
         }
         notification.DOAnchorPos(new Vector3(0, 1550, 0), 0.5f);
-        StartCoroutine(FadeOutNotification(message));
+        StartCoroutine(OutNotification(message));
     }
-    private IEnumerator FadeOutNotification(string message)
+    private IEnumerator OutNotification(string message)
     {
         notificationText.text = message;
         float t = 0;
         while (t < fadeTime)
         {
             t += Time.deltaTime;
-            notificationText.color = new Color(notificationText.color.r,
-                notificationText.color.g,
-                notificationText.color.b,
-                Mathf.Lerp(1f, 0f, t / fadeTime));
             yield return new WaitForSeconds(Time.deltaTime);
         }
+        notification.DOAnchorPos(new Vector3(0, 3000, 0), 0.5f);
     }
 
 }

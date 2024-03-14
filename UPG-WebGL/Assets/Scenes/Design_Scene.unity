@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notificationText: {fileID: 555101522}
-  fadeTime: 5
+  fadeTime: 2
   notification: {fileID: 555101524}
 --- !u!114 &1726244610
 MonoBehaviour:
