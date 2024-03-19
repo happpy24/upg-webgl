@@ -15,6 +15,7 @@ public enum CurrentActiveEnv
 
 public enum PlayerPrompts
 {
+    none,
     chooseDirection,
     playCard,
     throwDice,

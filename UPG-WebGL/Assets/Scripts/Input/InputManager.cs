@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
 
     public EnvironmentBackgroundData[] backgroundData;
 
+    public GameObject testWindow = null;
+
     InputControls inputs;
 
     int i = 0;
@@ -31,6 +33,8 @@ public class InputManager : MonoBehaviour
         inputs = new InputControls();
 
         inputs.DesktopControls.NextAreaTest.performed += ctx => Clicked(ctx);
+        inputs.DesktopControls.NextAreaTest.performed += ctx => SpaceBar(ctx);
+
     }
 
     private void Start()
@@ -52,5 +56,9 @@ public class InputManager : MonoBehaviour
             onEnvironmentChange.Invoke(backgroundData[0]);
         }
     }
-
+    
+    //this is for testing and won't be permanent very simply coded
+    private void SpaceBar(InputAction.CallbackContext context)
+    {
+    }
 }

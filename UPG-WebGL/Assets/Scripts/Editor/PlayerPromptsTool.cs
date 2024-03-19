@@ -1,24 +1,20 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Printing;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.iOS;
 
 public class PlayerPromptsTool : EditorWindow
 {
-    private enum SimulatedPrompt
-    {
-        None,
-        chooseDirection,
-        playCard,
-        throwDice,
-        PlayerTurn
-    }
-
     private int chosenPlayer = 1;
-    private SimulatedPrompt simulatedPrompt;
+    private PlayerPrompts simulatedPrompt;
     private bool[] directions = new bool[4];
+    private bool SendButton = false;
+
 
     [MenuItem("Tools/Player prompts")]
     public static void ShowWidnow()
@@ -34,34 +30,37 @@ public class PlayerPromptsTool : EditorWindow
         chosenPlayer = EditorGUILayout.IntSlider("Player to give prompt", chosenPlayer, 1, 4);
 
         GUILayout.Label("Prompt to simulate", EditorStyles.boldLabel);
-        simulatedPrompt = (SimulatedPrompt)EditorGUILayout.EnumPopup(simulatedPrompt);
+        simulatedPrompt = (PlayerPrompts)EditorGUILayout.EnumPopup(simulatedPrompt);
 
         CheckSelectedEnum(simulatedPrompt);
     }
 
-    private void CheckSelectedEnum(SimulatedPrompt prompt)
+    private void CheckSelectedEnum(PlayerPrompts prompt)
     {
         switch (prompt)
         {
-            case SimulatedPrompt.chooseDirection:
+            case PlayerPrompts.chooseDirection:
                 ChooseDirectionlayout();
             break;
 
-            case SimulatedPrompt.playCard:
+            case PlayerPrompts.playCard:
 
             break; 
 
-            case SimulatedPrompt.throwDice:
+            case PlayerPrompts.throwDice:
 
             break;
         }
+
+        SendData<PlayerPromptChooseDirection>();
     }
 
-    //UI that handles the direction choosing
+    //UI that handles the direction choosing I am so sorry for how this looks I have sinned
     private void ChooseDirectionlayout()
     {
+        GUILayout.FlexibleSpace();
         GUILayout.BeginHorizontal();
-            GUILayout.Space(position.width/2);
+            GUILayout.Space(position.width/2.5f);
             GUILayout.BeginVertical();
             AddDirection("Up", 0, 35);
                 GUILayout.BeginHorizontal();
@@ -70,6 +69,11 @@ public class PlayerPromptsTool : EditorWindow
                 AddDirection("Right", 1, 35);
                 GUILayout.EndHorizontal();
             AddDirection("Down", 2, 35);
+            GUILayout.FlexibleSpace();
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(-55);
+                SendButton = GUILayout.Button("SendPrompt", GUILayout.Width(200));
+                GUILayout.EndHorizontal();
             GUILayout.EndVertical();
         GUILayout.EndHorizontal();
     }
@@ -77,8 +81,22 @@ public class PlayerPromptsTool : EditorWindow
     //simple Function thats adds a new checkbox for the direction
     private void AddDirection(string directionText, int directionValue, float space)
     {
-        //GUILayout.Space(position.width / Spacing);
         directions[directionValue] = GUILayout.Toggle(directions[directionValue], directionText, GUILayout.Width(50));
+    }
+
+    private void SendData<promptState>() where promptState : State
+    {
+        if (SendButton)
+        {
+            StateManager stateManager = FindObjectOfType<StateManager>();
+            promptState prompt = FindObjectOfType<promptState>();  
+
+
+            if (stateManager != null)
+            {
+                stateManager.currentState = prompt;
+            }
+        }
     }
 
 }

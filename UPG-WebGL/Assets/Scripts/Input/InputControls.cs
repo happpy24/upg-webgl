@@ -76,6 +76,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""NextArea(Test)"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e222cb75-f283-4fce-a212-def40f4b6806"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextArea(Test)"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
