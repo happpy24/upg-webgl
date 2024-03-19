@@ -33,13 +33,23 @@ public class InputManager : MonoBehaviour
         inputs = new InputControls();
 
         inputs.DesktopControls.NextAreaTest.performed += ctx => Clicked(ctx);
-        inputs.DesktopControls.NextAreaTest.performed += ctx => SpaceBar(ctx);
+
+        inputs.DesktopControls.Notification.performed += ctx => Notif(ctx);
 
     }
 
     private void Start()
     {
         onEnvironmentChange.Invoke(backgroundData[0]);
+        //get name or give error
+        name = "TestName";
+        //name = activePlayer.name;
+        //activePlayer = player with name (activePlayer.name)
+        if (name == null)
+        {
+            NotificationManager.Instance.SetNewNotification("Error");
+        }
+
     }
 
     private void Clicked(InputAction.CallbackContext context)
@@ -57,8 +67,9 @@ public class InputManager : MonoBehaviour
         }
     }
     
-    //this is for testing and won't be permanent very simply coded
-    private void SpaceBar(InputAction.CallbackContext context)
+
+    private void Notif(InputAction.CallbackContext context)
     {
+        NotificationManager.Instance.SetNewNotification($"{name}'s Turn");
     }
 }
