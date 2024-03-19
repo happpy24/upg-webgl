@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
 
     public EnvironmentBackgroundData[] backgroundData;
 
+    public GameObject testWindow = null;
+
     InputControls inputs;
 
     int i = 0;
@@ -31,7 +33,9 @@ public class InputManager : MonoBehaviour
         inputs = new InputControls();
 
         inputs.DesktopControls.NextAreaTest.performed += ctx => Clicked(ctx);
+
         inputs.DesktopControls.Notification.performed += ctx => Notif(ctx);
+
     }
 
     private void Start()
@@ -63,9 +67,9 @@ public class InputManager : MonoBehaviour
         }
     }
     
+
     private void Notif(InputAction.CallbackContext context)
     {
         NotificationManager.Instance.SetNewNotification($"{name}'s Turn");
     }
-
 }

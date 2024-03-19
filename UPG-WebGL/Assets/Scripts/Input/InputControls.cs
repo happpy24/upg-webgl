@@ -88,12 +88,14 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+
                     ""id"": ""52f7d7fb-9777-4f24-9bf0-d22fed843146"",
                     ""path"": ""<Keyboard>/#(E)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Notification"",
+
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }

@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    //public delegate void EnvironmentChange(EnvironmentBackgroundData backgroundData);
-    //public static event EnvironmentChange onEnvironmentChange;
-
-    //public EnvironmentBackgroundData currentEnvironmentBackgroundColor;
+    //list of all the objects with a state
+    public List<State> states = new List<State>();
 
     void Start()
     {
