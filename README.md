@@ -5,13 +5,14 @@ Developed by students at [HU](https://www.hu.nl) - Utrecht University of Applied
 
 ### Unity Party Game Family
 - [upg-main](https://github.com/happpy24/upg-main) - The Main application which runs on Desktop.
-- [upg-webgl](https://github.com/happpy24/upg-webgl) - The WebGL application which runs on our webserver.
 - [upg-site](https://github.com/happpy24/upg-site) - The Website used to host the WebGL application.
 
 ### About WebGL
-The WebGL application is made with Unity and works on our site: [soon](https://www.youtube.com/watch?v=tXAbnRAFkrY). 
+THIS APPLICATION IS DEPRICATED. upg-webgl was merged into upg-main.
 
-This will be the functional controller for everyone who wants to play along with the Game! 
+Please view upg-main for the actual application files and information.
+
+We chose to make the applications seperate for ease of use for ourselves, but the networking solution we were using: Mirror Networking, does not support this that well. This is why we eventually chose to merge the two and will now be exporting upg-main as a webgl application for the site we developed.
 
 ---
 ### What *is* Unity Party Game?
